@@ -1,0 +1,4 @@
+import React from 'react'
+export default ({
+    width = 32,height=32,className = "icon",color="gray"
+})=>(<svg className={className} viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="16967" width={width} height={height}><path fill={color} d="M350.3 485.1H215.5v80.8h134.8v-80.8z m215.6 0H431.2v80.8h134.7v-80.8z m215.5 0H646.7v80.8h134.7v-80.8zM350.3 350.3H215.5v80.8h134.8v-80.8z m215.6 0H431.2v80.8h134.7v-80.8z m215.5 0H646.7v80.8h134.7v-80.8zM350.3 215.6H215.5v80.8h134.8v-80.8z m215.6 0H431.2v80.8h134.7v-80.8z m215.5 0H646.7v80.8h134.7v-80.8z m0 0" p-id="16968"></path><path fill={color} d="M916.1 26.9H107.8C48.3 26.9 0 75.2 0 134.7v538.9c0 59.5 48.2 107.8 107.8 107.8h269.5v107.8H242.5V997h538.9V889.1H646.7V781.4h269.5c59.5 0 107.8-48.2 107.8-107.8V134.7c-0.1-59.5-48.3-107.8-107.9-107.8zM565.9 889.1H458V781.4h107.8v107.7z m350.2-215.5H107.7V134.7h808.4v538.9z m0 0" p-id="16969"></path></svg>)
