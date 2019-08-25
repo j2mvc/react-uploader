@@ -53,7 +53,8 @@ export const Upload = (props: UploaderProps) => {
     locale,
     attachPrefix
   })
-  return <UploadComponent {...rest} />
+  return <div>我是插件</div>
+  // return <UploadComponent {...rest} />
 }
 export const UploadDialog = (props: UploadDialogProps) => {
   // 初始化配置
