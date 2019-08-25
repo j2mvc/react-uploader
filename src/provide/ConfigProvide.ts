@@ -16,7 +16,7 @@ export const getName = (locale: string) => {
       return;
     }
   })
-  return name
+  return name 
 }
 interface Result {
   initConfig: Function
@@ -42,7 +42,7 @@ export const makeConfigProvide = (): Result => {
     } = props
 
     // 无值，则获取本地结果
-    const { words } = await import(`../../config/locale/${locale || 'zh'}`)
+    const { words } = await import(`../config/locale/${locale || 'zh'}`)
     const value = words || defaultWords
     // 获取语种名称
     const name = () => getName(locale)
