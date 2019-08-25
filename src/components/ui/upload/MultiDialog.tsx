@@ -8,8 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import { CloseButton } from '../button';
 
-import { useMappedState } from '../../../store'
-import * as State from '../../../store/state'
+import { getConfig } from '../../../storage/ConfigStorage'
 
 import Multi from './Multi'
 
@@ -67,15 +66,7 @@ const MultiDialog = (props: any) => {
     noShowGroup 
   } = props;
 
-  const { localeConfig } = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig,
-        groupList: state.common.attach.groupList
-      }),
-      [],
-    ),
-  );
+  const { localeConfig } = getConfig();
 
   const classes = useStyles()
 

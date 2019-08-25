@@ -2,8 +2,9 @@
 // 配置
 export interface Config  {
     apiUrls: ApiUrls;//接口配置
-    localeConfig?:LocaleConfig;//语种
+    localeConfig:LocaleConfig;//语种
     attachPrefix:string;// 附件前缀
+    headers:any;// 请求头
 }
 // 接口
 export interface ApiUrls {

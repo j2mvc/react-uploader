@@ -10,8 +10,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import { CloseButton } from '../button';
 
-import { useMappedState } from '../../../store'
-import * as State from '../../../store/state'
+import { getConfig } from '../../../storage/ConfigStorage'
+
 import DialogActions from '@material-ui/core/DialogActions';
 
 import { TabPanel, StyleTab, StyleTabs } from '../tabs/StyleTabs';
@@ -116,15 +116,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const UploadDialog = (props: any) => {
   const { open, success, onClose, type, attaches, url, fromEditor } = props;
 
-  const { localeConfig } = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig,
-        groupList: state.common.attach.groupList
-      }),
-      [],
-    ),
-  );
+  const { localeConfig } = getConfig();
 
   const classes = useStyles()
   const theme = useTheme();

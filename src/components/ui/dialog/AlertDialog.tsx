@@ -6,10 +6,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Box from '@material-ui/core/Box';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import { useMappedState } from '../../../store'
-import * as State from '../../../store/state'
-
 export type AlertDialogProps = {
+  localeConfig:any,
   description: any,
   title?: string,
   open: boolean,
@@ -17,16 +15,8 @@ export type AlertDialogProps = {
   cancel: () => void
 }
 export default function AlertDialog(props: AlertDialogProps) {
-  const { description, title, open, ok, cancel } = props
+  const { localeConfig, description, title, open, ok, cancel } = props
 
-  const { localeConfig } = useMappedState(
-    React.useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig
-      }),
-      [],
-    ),
-  );
   if(open){
     return (
       <div>

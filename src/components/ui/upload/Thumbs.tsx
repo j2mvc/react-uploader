@@ -9,8 +9,7 @@ import Icon from '../../Icon';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
 
-import { useMappedState } from '../../../store'
-import * as State from '../../../store/state'
+import { getConfig } from '../../../storage/ConfigStorage'
 
 import ExtIcon from './ExtIcon'
 
@@ -110,15 +109,7 @@ export type ThumbsProps = {
 }
 
 const ThumbsPage = (props: ThumbsProps) => {
-  const { localeConfig,attachPrefix} = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        attachPrefix:state.app.attachPrefix,
-        localeConfig: state.app.localeConfig
-      }),
-      [],
-    ),
-  );
+  const { localeConfig,attachPrefix} = getConfig();
   const { onRemove, attaches, type, onSelect, selected,disabled } = props
   // 样式 
   const classes = useStyles()

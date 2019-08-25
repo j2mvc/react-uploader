@@ -1,14 +1,14 @@
 import React from 'react';
-import FullUpload  from './Upload';
-import Dialog from './Dialog';
+import UploadComponent from './components/ui/upload';
+import UploadDialogComponent from './components/ui/upload';
 
-import { createStore, StoreContext } from './store';
+import { makeConfigProvide } from './provide/app/ConfigProvide'
 import * as types from './types/app'
 import * as commonTypes from './types/common'
 
 // 上传组件弹框接受参数
 export type UploadDialogProps = {
-  // element:Element,// 引用组件
+  locale: string,// 语种：en|zh
   headers?: any,// 请求头
   apiUrls?: types.ApiUrls,// 上传组件所用接口地址
   attachPrefix?: string,// 附件前缀
@@ -22,8 +22,8 @@ export type UploadDialogProps = {
   fromEditor?: boolean// 从编辑器调用上传器 
 }
 // 上传组件接受参数
-export type UploadProps = {
-  // element:Element,// 引用组件
+export type UploaderProps = {
+  locale: string,// 语种：en|zh
   headers?: any,// 请求头
   apiUrls?: types.ApiUrls,// 上传组件所用接口地址
   attachPrefix?: string,// 附件前缀
@@ -37,21 +37,40 @@ export type UploadProps = {
   defaultAttaches?: commonTypes.Attach[]// 预设附件列表
 }
 
-export const Upload =  (props: UploadProps)=>{
-  const { headers, ...rest } = props
-  const store = createStore(headers)
-  return <StoreContext.Provider value={store}>
-    <FullUpload {...rest} />
-  </StoreContext.Provider>
+export const Upload = (props: UploaderProps) => {
+  // 初始化配置
+  const {
+    headers,
+    apiUrls,
+    locale,
+    attachPrefix,
+    ...rest
+  } = props
+  const { initConfig } = makeConfigProvide()
+  initConfig({
+    headers,
+    apiUrls,
+    locale,
+    attachPrefix
+  })
+  return <UploadComponent {...rest} />
 }
-// export const UploadDialog =  (props: UploadDialogProps)=>{
-//   const { headers, ...rest } = props
-//   const store = createStore(headers)
-//   return ReactDOM.createPortal(
-//     <StoreContext.Provider value={store}>
-//       <Dialog {...rest} />
-//     </StoreContext.Provider>,
-//     element
-//   )
-// }
+export const UploadDialog = (props: UploadDialogProps) => {
+  // 初始化配置
+  const {
+    headers,
+    apiUrls,
+    locale,
+    attachPrefix,
+    ...rest
+  } = props
+  const { initConfig } = makeConfigProvide()
+  initConfig({
+    headers,
+    apiUrls,
+    locale,
+    attachPrefix
+  })
+  return <UploadDialogComponent  {...rest} />
+}
 export default Upload

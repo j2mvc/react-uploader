@@ -7,13 +7,12 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
 import AddIcon from '@material-ui/icons/Add';
- 
-import { useDispatch, useMappedState } from '../../../store'
-import * as State from '../../../store/state'
 
 import { TabPanel, StyleTab, StyleTabs } from '../tabs/StyleTabs';
 
-import { makeAttachProvide } from '../../../provide/common/AttachProvide'
+import { getConfig } from '../../../storage/ConfigStorage'
+import { makeAttachProvide } from '../../../provide/common/attachProvide'
+
 import AttachListPage from './AttachList'
 
 import EditGroup from './EditGroup'
@@ -102,22 +101,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Remote = (props: any) => {
   const dispatch = useDispatch()
-  const { getAttachGroupList, removeGroup } = makeAttachProvide(dispatch)
+  const { getGroupList, removeGroup } = makeAttachProvide()
   const { success, attaches, type } = props
   // 样式 
   const classes = useStyles()
   const theme = useTheme();
 
-  const { localeConfig, groupList ,apiUrls} = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig,
-        apiUrls: state.app.apiUrls,
-        groupList: state.common.attach.groupList || [],
-      }),
-      [],
-    ),
-  );
+  const { localeConfig } = getConfig();
   // 事件反馈
   const initialMessage = {
     open: false,
@@ -132,21 +122,26 @@ const Remote = (props: any) => {
   const [loading, setLoading] = useState(initialLoading)
 
   // 查询分组
+  const [groupList,setGroupList] = useState([] as any)
   const loadGroupList = () => {
     // 获取列表
     setLoading({
       loading: true,
       text: '正在加载分组数据...'
     })
-    getAttachGroupList({
-      success: (message: string) => {
+    getGroupList({
+      success: (list: any) => {
         // 关闭加载条
         setLoading(initialLoading)
+        setGroupList(list)
       },
       failure: (message: string) => {
       }
     })
   }
+  useEffect(()=>{
+    loadGroupList()
+  },[])
   // 编辑分组
   const [editGroupOpen, setEditGroupOpen] = useState(false)
   const [group, setGroup] = useState()
@@ -182,7 +177,6 @@ const Remote = (props: any) => {
           text: '正在删除分组...'
         })
         removeGroup({
-          url:apiUrls.removeGroup,
           id: [id],
           success: (message: string) => {
             setValue(0)

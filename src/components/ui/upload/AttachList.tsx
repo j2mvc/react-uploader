@@ -12,8 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import Icon from '../../Icon';
 
-import { useDispatch, useMappedState } from '../../../store'
-import * as State from '../../../store/state'
+import { getConfig } from '../../../storage/ConfigStorage'
 
 // 弹框
 import LoadingBox from '../LoadingBox'
@@ -105,28 +104,30 @@ const useStyles = makeStyles((theme: Theme) =>
   }))
 
 const AttachListPage = (props: any) => {
-  const dispatch = useDispatch()
-  const { getAttachList, removeAttach, moveAttach } = makeAttachProvide(dispatch)
+  const { getGroupList, getAttachList, removeAttach, moveAttach } = makeAttachProvide()
   const { group, onEditGroup, onRemoveGroup, success, attaches, type } = props
   // 样式 
   const classes = useStyles()
   // 附件类型
   const attType = UploadType.getAttType(type)
 
-  const { localeConfig, groupList,apiUrls  } = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig,
-        apiUrls: state.app.apiUrls,
-        groupList: state.common.attach.groupList
-      }),
-      [],
-    ),
-  );
+  const {localeConfig} = getConfig()
+  const [groupList,setGroupList] = useState([]as any)
   const [list, setList] = useState([] as any)
   const [pagination, setPagination] = useState()
   const [selected, setSelected] = useState({} as any)
   const [disabled, setDisabled] = useState({} as any)
+  // 加载分组列表
+  const loadGoupList = ()=>{
+    getGroupList({
+      success:(list:any)=>{
+        setGroupList(list)
+      }, 
+      failure:()=>{
+
+      }
+    })
+  }
   // 已提交编辑页面的附件列表解析为不可选择
   // 且从已选择对象中移除
   const loadDisabled = ()=>{
@@ -141,9 +142,6 @@ const AttachListPage = (props: any) => {
       setDisabled(newDisabled)
     }
   }
-  useEffect(()=>{
-    loadDisabled()
-  })
 
   // 警示框
   const [alertOpen, setAlertOpen] = useState(false)
@@ -185,9 +183,11 @@ const AttachListPage = (props: any) => {
       }
     }
   }
-  useEffect(() => {
+  useEffect(()=>{
+    loadGoupList()
+    loadDisabled()
     initialSelected()
-  }, [])
+  })
   // 分页
   const total = (pagination && pagination.total) || 0
   const [page, setPage] = React.useState(1);
@@ -225,7 +225,6 @@ const AttachListPage = (props: any) => {
       text: '正在加载列表数据...'
     })
     getAttachList({
-      url:apiUrls.getAttachList,
       params,
       success: (props: any) => {
         const { list, pagination, message } = props
@@ -273,7 +272,6 @@ const AttachListPage = (props: any) => {
           text: '正在删除附件...'
         })
         removeAttach({
-          url:apiUrls.removeAttach,
           id,
           success: (message: string) => {
             setDialogLoading(initialDialogLoading)
@@ -312,7 +310,6 @@ const AttachListPage = (props: any) => {
     })
     const id = Object.keys(selected);
     moveAttach({
-      url:apiUrls.moveAttach,
       id,
       groupId: newGroupId,
       success: (message: string) => {

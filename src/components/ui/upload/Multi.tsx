@@ -10,14 +10,15 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import { useDispatch, useMappedState } from '../../../store'
-import * as State from '../../../store/state'
-
 import Icon from '../../Icon';
 import * as Accepts from './Accepts'
 
 import { useDropzone } from 'react-dropzone'
+
+import { getConfig } from '../../../storage/ConfigStorage'
 import { makeFileProvide } from '../../../provide/common/FileProvide'
+import { makeAttachProvide } from '../../../provide/common/attachProvide'
+
 import SplitButton from '../button/SplitButton'
 
 const BorderLinearProgress = withStyles({
@@ -164,23 +165,26 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }))
 const Multi = (props: any) => {
-  const dispatch = useDispatch()
   const { success, type, defaultGroup, noShowGroup } = props
   // 样式 
   const classes = useStyles()
 
-  const { localeConfig, groupList,apiUrls } = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig,
-        apiUrls: state.app.apiUrls,
-        groupList: state.common.attach.groupList,
-      }),
-      [],
-    ),
-  );
+  const { localeConfig } = getConfig()
+  const { getGroupList} = makeAttachProvide()
+  const { upload } = makeFileProvide()
 
-  const { upload } = makeFileProvide(dispatch)
+  const [groupList,setGroupList] = useState([] as any)
+  // 加载分组列表
+  useEffect(()=>{
+    getGroupList({
+      success:(list:any)=>{
+        setGroupList(list)
+      }, 
+      failure:()=>{
+
+      }
+    })
+  },[])
   const [files, setFiles] = useState([] as any);
   const [precent, setPrecent] = useState(0)
   const [disabled, setDisabled] = useState(false)
@@ -267,7 +271,6 @@ const Multi = (props: any) => {
       data.append('groupId', group.id)
     }
     upload({
-      apiUrls,
       type,
       data,
       onProgress: (event: any) => {

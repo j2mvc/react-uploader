@@ -7,8 +7,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
-import { useDispatch} from '../../../store'
+import { getConfig } from '../../../storage/ConfigStorage'
 import { makeAttachProvide } from '../../../provide/common/AttachProvide'
+import { defaultLocaleConfig } from '../../../provide/app/ConfigProvide'
 import { LoadingDialog, MessageDialog } from '../../../components/ui/dialog'
 
 const dialogActions: React.CSSProperties = {
@@ -16,12 +17,12 @@ const dialogActions: React.CSSProperties = {
 };
 
 
-export default function EditGroup(props:any) {
-  const dispatch = useDispatch()
-  const { saveGroup} = makeAttachProvide(dispatch)
+export default function EditGroup(props: any) {
+  const { saveGroup } = makeAttachProvide()
+  const config = getConfig() 
+  const localeConfig = config.localeConfig || defaultLocaleConfig
+  const { group, open, onClose, onChange } = props
 
-  const {group,open, onClose ,onChange,localeConfig,apiUrls} = props
-  
   // 事件反馈
   const initialMessage = {
     open: false,
@@ -33,19 +34,18 @@ export default function EditGroup(props:any) {
   const initialLoading = { open: false, text: '' }
   const [loading, setLoading] = React.useState(initialLoading)
   // 提交
-  const [form,setForm] = React.useState(group)
+  const [form, setForm] = React.useState(group)
   React.useEffect(() => {
     setForm(group)
   });
-  const onSubmit = ()=>{
+  const onSubmit = () => {
     // 获取列表
     setLoading({
       open: true,
       text: '正在保存分组...'
     })
     saveGroup({
-      url:apiUrls.saveGroup,
-      group:form,
+      group: form,
       success: (message: string) => {
         // 关闭加载条
         setLoading(initialLoading)
@@ -66,41 +66,41 @@ export default function EditGroup(props:any) {
   }
 
   return (
-      <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
-        <DialogContent>
-          <DialogContentText>
-            {localeConfig.words.editGroupTip}
-          </DialogContentText>
-          <TextField
-            autoFocus
-            defaultValue={form && form.name}
-            margin="dense"
-            id="name"
-            label="分组名称"
-            type="text"
-            onChange={(event:any)=>{
-              const newForm = form
-              newForm.name = event.target.value
-              setForm(form)
-            }}
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions style={dialogActions}>
-          <Button onClick={onClose} color="primary">
-            {localeConfig.words.cancel}
-          </Button>
-          <Button variant="contained" onClick={onSubmit} color="primary">
-            {localeConfig.words.submit}
-          </Button>
-        </DialogActions>
-        <LoadingDialog open={loading.open} text={loading.text} />
-        <MessageDialog
-          onClose={() => {
-            setMessage(initialMessage)
+    <Dialog open={open} onClose={onClose} aria-labelledby="form-dialog-title">
+      <DialogContent>
+        <DialogContentText>
+          {localeConfig.words.editGroupTip}
+        </DialogContentText>
+        <TextField
+          autoFocus
+          defaultValue={form && form.name}
+          margin="dense"
+          id="name"
+          label="分组名称"
+          type="text"
+          onChange={(event: any) => {
+            const newForm = form
+            newForm.name = event.target.value
+            setForm(form)
           }}
-          message={message} />
-      </Dialog>
-    
+          fullWidth
+        />
+      </DialogContent>
+      <DialogActions style={dialogActions}>
+        <Button onClick={onClose} color="primary">
+          {localeConfig.words.cancel}
+        </Button>
+        <Button variant="contained" onClick={onSubmit} color="primary">
+          {localeConfig.words.submit}
+        </Button>
+      </DialogActions>
+      <LoadingDialog open={loading.open} text={loading.text} />
+      <MessageDialog
+        onClose={() => {
+          setMessage(initialMessage)
+        }}
+        message={message} />
+    </Dialog>
+
   );
 }

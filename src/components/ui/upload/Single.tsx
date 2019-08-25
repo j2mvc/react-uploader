@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import { makeStyles, createStyles, Theme, useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -7,11 +7,11 @@ import Box from '@material-ui/core/Box';
 import LoadingBox from '../LoadingBox';
 import {  MessageDialog } from '../dialog';
 
-import { useDispatch, useMappedState } from '../../../store';
-import * as State from '../../../store/state';
+import { getConfig } from '../../../storage/ConfigStorage'
+import { makeFileProvide } from '../../../provide/common/FileProvide'
+import { makeAttachProvide } from '../../../provide/common/attachProvide'
 
 import { useDropzone } from 'react-dropzone';
-import { makeFileProvide } from '../../../provide/common/FileProvide'
 import SplitButton from '../button/SplitButton';
 
 import * as Accepts from './Accepts'
@@ -79,21 +79,27 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }))
 const Single = (props: any) => {
-  const dispatch = useDispatch()
+  
   const { success, type, defaultGroup, noShowGroup } = props
   // 样式 
   const classes = useStyles()
 
-  const { localeConfig, groupList,apiUrls } = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig,
-        apiUrls:state.app.apiUrls,
-        groupList: state.common.attach.groupList,
-      }),
-      [],
-    ),
-  );
+  const { localeConfig } = getConfig()
+  const { getGroupList} = makeAttachProvide()
+  const { upload } = makeFileProvide()
+
+  const [groupList,setGroupList] = useState([] as any)
+  // 加载分组列表
+  useEffect(()=>{
+    getGroupList({
+      success:(list:any)=>{
+        setGroupList(list)
+      }, 
+      failure:()=>{
+
+      }
+    })
+  },[])
 
   // 事件反馈
   const initialMessage = {
@@ -106,7 +112,6 @@ const Single = (props: any) => {
   const initialLoading = { open: false, text: 'Loading...' }
   const [loading, setLoading] = useState(initialLoading)
 
-  const { upload } = makeFileProvide(dispatch)
   const [group, setGroup] = useState(defaultGroup);// 选中的分组
   const {
     getRootProps,
@@ -136,7 +141,6 @@ const Single = (props: any) => {
           data.append('groupId', group.id)
         }
         upload({
-          apiUrls,
           type,
           data,
           onProgress: (event: any) => {

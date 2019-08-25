@@ -13,8 +13,7 @@ import Thumbs from './Thumbs'
 import LoadingBox from '../LoadingBox'
 import UploadDialog from './UploadDialog'
 
-import { useDispatch, useMappedState } from '../../../store'
-import * as State from '../../../store/state'
+import { getConfig } from '../../../storage/ConfigStorage'
 
 import { makeAttachProvide } from '../../../provide/common/AttachProvide'
 import * as commonTypes from '../../../types/common'
@@ -79,34 +78,11 @@ export type UploaderProps = {
  * 主要功能在对话框实现
  * @param props 接收编辑页面参数，返回单个附件对象或附件列表
  */
-const Uploader = (props: UploaderProps) => {
-  const dispatch = useDispatch()
-  const { getAttachGroupList, getAttachListByUrls } = makeAttachProvide(dispatch)
+const Uploader = (props: any) => {
+  const { getAttachListByUrls } = makeAttachProvide()
 
-  const { localeConfig,apiUrls,attachPrefix } = useMappedState(
-    useCallback(
-      (state: State.Root) => ({
-        localeConfig: state.app.localeConfig,
-        attachPrefix: state.app.attachPrefix,
-        apiUrls: state.app.apiUrls
-      }),
-      [],
-    ),
-  );
+  const { localeConfig, attachPrefix } = getConfig()
 
-
-  React.useEffect(() => {
-    // 提前载入分组列表，其他组件使用
-    getAttachGroupList({
-      url:apiUrls.getGroupList,
-      success: (message: string) => {
-      },
-      failure: (message: string) => {
-      }
-    })
-    return () => { };
-  }, []);
- 
   const { type, onChange, cancel, defaultUrl, defaultUrls, defaultAttach, defaultAttaches } = props
   const classes = useStyles()
   // 上传类型
@@ -136,7 +112,6 @@ const Uploader = (props: UploaderProps) => {
     // 查询出附件列表
     if (urls.length > 0) {
       getAttachListByUrls({
-        url:apiUrls.getAttachListByUrls,
         urls,
         success: (list: any) => {
           setAttaches(list)
@@ -171,10 +146,10 @@ const Uploader = (props: UploaderProps) => {
           setOpen(true)
         }}>
         {type === 'images' ?
-        <Icon name="UploadImage" width={32} heigh={32} color="#fff" /> : <>
-          <AddIcon />
-          {localeConfig.words.uploadFile}
-        </>}
+          <Icon name="UploadImage" width={32} heigh={32} color="#fff" /> : <>
+            <AddIcon />
+            {localeConfig.words.uploadFile}
+          </>}
       </Button>
     </Box>
     <Thumbs {...{
