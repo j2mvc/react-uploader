@@ -1,5 +1,5 @@
-import { httpPost } from '../../api'
-import { getConfig } from '../../storage/ConfigStorage'
+import { httpPost } from '../api'
+import { getConfig } from '../storage/ConfigStorage'
 
 export type FileUploadProps = {
   type: string,

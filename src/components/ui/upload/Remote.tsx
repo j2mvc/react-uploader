@@ -11,7 +11,7 @@ import AddIcon from '@material-ui/icons/Add';
 import { TabPanel, StyleTab, StyleTabs } from '../tabs/StyleTabs';
 
 import { getConfig } from '../../../storage/ConfigStorage'
-import { makeAttachProvide } from '../../../provide/common/attachProvide'
+import { makeAttachProvide } from '../../../provide/AttachProvide'
 
 import AttachListPage from './AttachList'
 
@@ -100,7 +100,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }))
 
 const Remote = (props: any) => {
-  const dispatch = useDispatch()
   const { getGroupList, removeGroup } = makeAttachProvide()
   const { success, attaches, type } = props
   // 样式 

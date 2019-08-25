@@ -1,5 +1,5 @@
-import {httpGet,httpPost} from '../../api'
-import {getConfig} from '../../storage/ConfigStorage'
+import {httpGet,httpPost} from '../api'
+import {getConfig} from '../storage/ConfigStorage'
 /**
  * 组织逻辑
  */

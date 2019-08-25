@@ -15,7 +15,7 @@ import UploadDialog from './UploadDialog'
 
 import { getConfig } from '../../../storage/ConfigStorage'
 
-import { makeAttachProvide } from '../../../provide/common/AttachProvide'
+import { makeAttachProvide } from '../../../provide/AttachProvide'
 import * as commonTypes from '../../../types/common'
 import * as UploadType from './UploadType'
 

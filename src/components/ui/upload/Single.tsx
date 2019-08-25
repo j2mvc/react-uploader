@@ -8,8 +8,8 @@ import LoadingBox from '../LoadingBox';
 import {  MessageDialog } from '../dialog';
 
 import { getConfig } from '../../../storage/ConfigStorage'
-import { makeFileProvide } from '../../../provide/common/FileProvide'
-import { makeAttachProvide } from '../../../provide/common/attachProvide'
+import { makeFileProvide } from '../../../provide/FileProvide'
+import { makeAttachProvide } from '../../../provide/AttachProvide'
 
 import { useDropzone } from 'react-dropzone';
 import SplitButton from '../button/SplitButton';

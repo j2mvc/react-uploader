@@ -2,7 +2,7 @@ import React from 'react';
 import UploadComponent from './components/ui/upload';
 import UploadDialogComponent from './components/ui/upload';
 
-import { makeConfigProvide } from './provide/app/ConfigProvide'
+import { makeConfigProvide } from './provide/ConfigProvide'
 import * as types from './types/app'
 import * as commonTypes from './types/common'
 

@@ -8,8 +8,8 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 
 import { getConfig } from '../../../storage/ConfigStorage'
-import { makeAttachProvide } from '../../../provide/common/AttachProvide'
-import { defaultLocaleConfig } from '../../../provide/app/ConfigProvide'
+import { makeAttachProvide } from '../../../provide/AttachProvide'
+import { defaultLocaleConfig } from '../../../provide/ConfigProvide'
 import { LoadingDialog, MessageDialog } from '../../../components/ui/dialog'
 
 const dialogActions: React.CSSProperties = {

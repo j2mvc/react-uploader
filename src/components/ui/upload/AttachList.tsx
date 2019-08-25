@@ -18,7 +18,7 @@ import { getConfig } from '../../../storage/ConfigStorage'
 import LoadingBox from '../LoadingBox'
 import { LoadingDialog, MessageDialog, AlertDialog } from '../dialog'
 
-import { makeAttachProvide } from '../../../provide/common/AttachProvide'
+import { makeAttachProvide } from '../../../provide/AttachProvide'
 import ListPagination from '../pagination'
 import SplitButton from '../button/SplitButton'
 
