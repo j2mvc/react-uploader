@@ -1,6 +1,5 @@
-
-import { words as defaultWords } from '../config/locale/zh'
 import { setConfig } from '../storage/ConfigStorage'
+import { words as defaultWords } from '../config/locale/zh'
 export const localeNames = [{
   name: '简体中文',
   locale: 'zh'
