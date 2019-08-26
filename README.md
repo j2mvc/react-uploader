@@ -3,10 +3,14 @@
 ### quick start 
 ```
 npm install --save j2mvc-react-uploader
+if your project as typescript
+add declare code to some file as .d.ts  
+ 
+ declare module 'j2mvc-react-uploader';
 ```
 ### import
 ```
-import { Upload as UploadComponent ,UploadDialog as UploadDialogComponent } from '../../src'
+import { Upload as UploadComponent ,UploadDialog as UploadDialogComponent } from 'j2mvc-react-uploader'
 
 ```
 ### create whole component as Uploader.tsx or Uploader.js 
@@ -20,19 +24,19 @@ export  const Upload = (props: any) => {
       },
       attachPrefix,
       apiUrls: {
-        getAttachList: `${API}attach/getList`,
-        getAttachListByUrls: `${API}attach/getListByUrls`,
-        getGroupList: `${API}attach/group/getList`,
-        saveGroup: `${API}attach/group/save`,
-        removeGroup: `${API}attach/group/del`,
-        removeAttach: `${API}file/delAttaches`,
-        moveAttach: `${API}attach/move`,
-        uploadImage: `${API}file/uploadImage`,
-        uploadMedia: `${API}file/uploadMedia`,
-        uploadVideo: `${API}file/uploadVideo`,
-        uploadAudio: `${API}file/uploadAudio`,
-        uploadFlash: `${API}file/uploadFlash`,
-        uploadFile: `${API}file/uploadFile`,
+        getAttachList: `/api/attach/getList`,
+        getAttachListByUrls: `/api/attach/getListByUrls`,
+        getGroupList: `/api/attach/group/getList`,
+        saveGroup: `/api/attach/group/save`,
+        removeGroup: `/api/attach/group/del`,
+        removeAttach: `/api/file/delAttaches`,
+        moveAttach: `/api/attach/move`,
+        uploadImage: `/api/file/uploadImage`,
+        uploadMedia: `/api/file/uploadMedia`,
+        uploadVideo: `/api/file/uploadVideo`,
+        uploadAudio: `/api/file/uploadAudio`,
+        uploadFlash: `/api/file/uploadFlash`,
+        uploadFile: `/api/file/uploadFile`,
       },
       ...props
     })
@@ -47,19 +51,19 @@ export  const UploadDialog = (props: any) => {
       },
       attachPrefix,
       apiUrls: {
-        getAttachList: `${API}attach/getList`,
-        getAttachListByUrls: `${API}attach/getListByUrls`,
-        getGroupList: `${API}attach/group/getList`,
-        saveGroup: `${API}attach/group/save`,
-        removeGroup: `${API}attach/group/del`,
-        removeAttach: `${API}file/delAttaches`,
-        moveAttach: `${API}attach/move`,
-        uploadImage: `${API}file/uploadImage`,
-        uploadMedia: `${API}file/uploadMedia`,
-        uploadVideo: `${API}file/uploadVideo`,
-        uploadAudio: `${API}file/uploadAudio`,
-        uploadFlash: `${API}file/uploadFlash`,
-        uploadFile: `${API}file/uploadFile`,
+        getAttachList: `/api/attach/getList`,
+        getAttachListByUrls: `/api/attach/getListByUrls`,
+        getGroupList: `/api/attach/group/getList`,
+        saveGroup: `/api/attach/group/save`,
+        removeGroup: `/api/attach/group/del`,
+        removeAttach: `/api/file/delAttaches`,
+        moveAttach: `/api/attach/move`,
+        uploadImage: `/api/file/uploadImage`,
+        uploadMedia: `/api/file/uploadMedia`,
+        uploadVideo: `/api/file/uploadVideo`,
+        uploadAudio: `/api/file/uploadAudio`,
+        uploadFlash: `/api/file/uploadFlash`,
+        uploadFile: `/api/file/uploadFile`,
       },
       ...props
     })
