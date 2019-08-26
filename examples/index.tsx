@@ -7,13 +7,13 @@ const token = "abcd"
 const attachPrefix = "http://localhost:8080/sip-api/attaches/"
 
 // 上传组件
-import { Upload as UploadComponent } from '../../src'
+import UploaderComponent from '../src'
 
 const Uploader = () => {
 
   const Upload = (props: any) => {
 
-    UploadComponent({
+    UploaderComponent.Upload({
       headers: {
         'App-Id': appId,
         'User-Token': token
@@ -53,4 +53,4 @@ const Uploader = () => {
   </div>
 }
 
-render(<Uploader />, document.querySelector('#demo'))
+render(<Uploader />, document.querySelector('#example'))

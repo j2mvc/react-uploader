@@ -8,18 +8,46 @@
 /* eslint-env node */
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const devEntry = {
+	app: './examples/index.js',
+	print: './examples/print.js'
+}
+const devOutput = { 
+	library: 'ReactUpload',
+	filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../build'),
+	libraryTarget: 'umd',
+	libraryExport: 'default'
+} 
+const proEnry = './src/index'
+const proOutput = {
+	// The name under which the editor will be exported.
+	library: 'ReactUpload',
+	path: path.resolve(__dirname, 'build'),
+	filename: 'index.js',
+	libraryTarget: 'umd',
+	libraryExport: 'default'
+}
+const devPlugins = [
+	new HtmlWebpackPlugin({
+	  title: '管理输出',
+	  innerHTML:'<div id="example"></div>'
+	})
+  ]
+
+const isDev = process.env.NODE_ENV === 'development'
+const entry = isDev ? devEntry:proEnry
+const output = isDev ? devOutput :proOutput
+const devtool = isDev ? "inline-source-map": "source-map"
+const plugins = isDev ? devPlugins:[]
+
 module.exports = {
-	mode: "production",
-	devtool: "source-map",
-	output: {
-		// The name under which the editor will be exported.
-		library: 'ReactUpload',
-		path: path.resolve(__dirname, 'build'),
-		filename: 'index.js',
-		libraryTarget: 'umd',
-		libraryExport: 'default'
-	},
-	entry: './src/index',
+	mode: isDev ? "development" : "production",
+	devtool,
+	output,
+	entry,
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
 	},
@@ -73,15 +101,24 @@ module.exports = {
 	node: {
 		Buffer: false
 	},
-
-	devtool: "source-map",
-
 	performance: {
 		hints: "warning"
 	},
+    plugins,
 	devServer: {
-		contentBase: path.join(__dirname, "./dist"),
-		port: 9000,
-		hot: true
+		// contentBase: path.join(__dirname, "./build"),
+		// port: 9000,
+		hot: true,
+		disableHostCheck: true,
+		proxy: {
+			'/api': {
+				target: 'http://localhost:8080/sip-api',
+				ws: true,
+				changeOrigin: true,
+				pathRewrite: {
+					'^/api': ''
+				}
+			}
+		}
 	}
 }

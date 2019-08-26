@@ -9,7 +9,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
 import { getConfig } from '../../../storage/ConfigStorage'
 import { makeAttachProvide } from '../../../provide/AttachProvide'
-import { defaultLocaleConfig } from '../../../provide/ConfigProvide'
 import { LoadingDialog, MessageDialog } from '../../../components/ui/dialog'
 
 const dialogActions: React.CSSProperties = {
@@ -19,8 +18,7 @@ const dialogActions: React.CSSProperties = {
 
 export default function EditGroup(props: any) {
   const { saveGroup } = makeAttachProvide()
-  const config = getConfig() 
-  const localeConfig = config.localeConfig || defaultLocaleConfig
+  const {localeConfig} = getConfig()
   const { group, open, onClose, onChange } = props
 
   // 事件反馈

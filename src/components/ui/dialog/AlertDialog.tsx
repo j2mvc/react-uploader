@@ -5,9 +5,9 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Box from '@material-ui/core/Box';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { getConfig } from '../../../storage/ConfigStorage'
 
 export type AlertDialogProps = {
-  localeConfig:any,
   description: any,
   title?: string,
   open: boolean,
@@ -15,7 +15,8 @@ export type AlertDialogProps = {
   cancel: () => void
 }
 export default function AlertDialog(props: AlertDialogProps) {
-  const { localeConfig, description, title, open, ok, cancel } = props
+  const { description, title, open, ok, cancel } = props
+  const {localeConfig} = getConfig()
 
   if(open){
     return (
