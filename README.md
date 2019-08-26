@@ -1,11 +1,14 @@
 # react-uploader
 
-### quick start 
+### Quick start 
 ```
 npm install --save j2mvc-react-uploader
+```
+ 
+### Declare module
 if your project as typescript
 add declare code to some file as .d.ts  
- 
+```
  declare module 'j2mvc-react-uploader';
 ```
 ### import
@@ -13,7 +16,7 @@ add declare code to some file as .d.ts
 import { Upload as UploadComponent ,UploadDialog as UploadDialogComponent } from 'j2mvc-react-uploader'
 
 ```
-### create whole component as Uploader.tsx or Uploader.js 
+### Create whole component as Uploader.tsx or Uploader.js 
 ```
 export  const Upload = (props: any) => {
 
@@ -115,7 +118,7 @@ export  const UploadDialog = (props: any) => {
     ...
   </div>
 ```
-### the Upload component receive two Props,below
+### The Upload component receive two Props,below
 ```
 
 // 上传组件弹框接受参数
@@ -152,3 +155,11 @@ export type UploaderProps = {
 }
 ```
 
+### Dependencies
+
+@material-ui/core
+@material-ui/icons
+emotion
+clsx
+axios
+react-dropzone

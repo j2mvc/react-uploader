@@ -1,6 +1,6 @@
 {
   "name": "j2mvc-react-uploader",
-  "version": "0.2.16",
+  "version": "0.2.20",
   "description": "react-uploader：React上传组件，支持单文件，单图，多文件，多图上传，且可以对文件进行分组管理",
   "main": "build/index.js",
   "module": "build/index.js",

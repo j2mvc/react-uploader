@@ -1,11 +1,14 @@
 import React, { useEffect,useState } from 'react';
 import UploadComponent from './components/ui/upload';
+
+import { ThemeProvider } from '@material-ui/styles';
 import * as Themes from './config/Themes';
 import UploadDialogComponent from './components/ui/upload';
 
 import { makeConfigProvide } from './provide/ConfigProvide'
 import * as types from './types/app'
 import * as commonTypes from './types/common'
+
 
 // 上传组件弹框接受参数
 export type UploadDialogProps = {
@@ -64,8 +67,9 @@ export const Upload = (props: UploaderProps) => {
       }
     })
   },[])
-  return <div>我是插件尼</div>
-  // return <UploadComponent {...rest} />
+  return <ThemeProvider theme={theme}>
+     <UploadComponent {...rest} />
+  </ThemeProvider>
 }
 export const UploadDialog = (props: UploadDialogProps) => {
   // 初始化配置
@@ -89,6 +93,8 @@ export const UploadDialog = (props: UploadDialogProps) => {
       setTheme(config.theme)
     }
   })
-  return <UploadDialogComponent  {...rest} />
+  return <ThemeProvider theme={theme}>
+    <UploadDialogComponent  {...rest} />
+</ThemeProvider>
 }
 export default Upload
