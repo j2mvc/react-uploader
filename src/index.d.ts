@@ -2,6 +2,13 @@ import * as React from "react";
 import * as types from "./types/app"
 import * as commonTypes from "./types/common"
 
+declare module 'j2mvc-react-upload';
+
+// 上传组件
+export type Uploader = {
+  upload:any,
+  uploadDialog:any
+}
 // 上传组件弹框接受参数
 export type UploadDialogProps = {
   themeName?:string,// 主题名称
