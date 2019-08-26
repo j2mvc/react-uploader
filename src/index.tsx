@@ -66,7 +66,7 @@ export const Upload = (props: UploaderProps) => {
         setTheme(config.theme)
       }
     })
-  },[])
+  })
   return <ThemeProvider theme={theme}>
      <UploadComponent {...rest} />
   </ThemeProvider>
