@@ -118,7 +118,7 @@ export  const UploadDialog = (props: any) => {
     ...
   </div>
 ```
-### The Upload component receive two Props,below
+### The Upload Component receive two Props,below
 ```
 
 // 上传组件弹框接受参数
@@ -157,9 +157,9 @@ export type UploaderProps = {
 
 ### Dependencies
 
-@material-ui/core
-@material-ui/icons
-emotion
-clsx
-axios
-react-dropzone
+###### @material-ui/core
+###### @material-ui/icons
+###### emotion
+###### clsx
+###### axios
+###### react-dropzone
