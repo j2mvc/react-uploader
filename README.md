@@ -87,20 +87,20 @@ export  const UploadDialog = (props: any) => {
         setUrl(attach && attach.url || url)
       }
     })}
-    Result:{url}
+    <div><img src={url}/></div>
   </div>
 ```
 
 ### aslo , now we open dialog by button.
 ```
   import {UploadDialog} from './Uploader'
-  
   ...
   const [open, setOpen] = useState(false)
   return <div>
-    <h1>React Upload Demo</h1>
-    <h2>Full Upload ui,may be used in Form.</h2>
-    {Upload({
+    ...
+    <h1>React Upload Dialog</h1>
+    <button onClick={()=>setOpen(true)}>Upload Images</button>
+    {UploadDialog({
         open,
         type: 'images',
         defaultAttaches: [],
@@ -112,7 +112,7 @@ export  const UploadDialog = (props: any) => {
             setOpen(false)
         }
     })}
-    Result:{url}
+    ...
   </div>
 ```
 ### the Upload component receive two Props,below
