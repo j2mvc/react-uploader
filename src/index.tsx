@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import UploadComponent from './components/ui/upload';
+import * as Themes from './config/Themes';
 import UploadDialogComponent from './components/ui/upload';
 
 import { makeConfigProvide } from './provide/ConfigProvide'
@@ -8,7 +9,8 @@ import * as commonTypes from './types/common'
 
 // 上传组件弹框接受参数
 export type UploadDialogProps = {
-  locale: string,// 语种：en|zh
+  themeName?:string,// 主题名称
+  locale?: string,// 语种：en|zh默认为zh
   headers?: any,// 请求头
   apiUrls?: types.ApiUrls,// 上传组件所用接口地址
   attachPrefix?: string,// 附件前缀
@@ -23,7 +25,8 @@ export type UploadDialogProps = {
 }
 // 上传组件接受参数
 export type UploaderProps = {
-  locale: string,// 语种：en|zh
+  themeName?:string,// 主题名称
+  locale?: string,// 语种：en|zh默认为zh
   headers?: any,// 请求头
   apiUrls?: types.ApiUrls,// 上传组件所用接口地址
   attachPrefix?: string,// 附件前缀
@@ -44,16 +47,24 @@ export const Upload = (props: UploaderProps) => {
     apiUrls,
     locale,
     attachPrefix,
+    themeName,
     ...rest
   } = props
+  const [theme,setTheme] = useState(Themes.defaultTheme)
   const { initConfig } = makeConfigProvide()
-  initConfig({
-    headers,
-    apiUrls,
-    locale,
-    attachPrefix
-  })
-  return <div>我是插件</div>
+  useEffect(()=>{
+    initConfig({
+      headers,
+      apiUrls,
+      locale,
+      attachPrefix,
+      themeName,
+      loaded:(config:types.Config)=>{
+        setTheme(config.theme)
+      }
+    })
+  },[])
+  return <div>我是插件尼</div>
   // return <UploadComponent {...rest} />
 }
 export const UploadDialog = (props: UploadDialogProps) => {
@@ -63,14 +74,20 @@ export const UploadDialog = (props: UploadDialogProps) => {
     apiUrls,
     locale,
     attachPrefix,
+    themeName,
     ...rest
   } = props
+  const [theme,setTheme] = useState(Themes.defaultTheme)
   const { initConfig } = makeConfigProvide()
   initConfig({
     headers,
     apiUrls,
     locale,
-    attachPrefix
+    attachPrefix,
+    themeName,
+    loaded:(config:types.Config)=>{
+      setTheme(config.theme)
+    }
   })
   return <UploadDialogComponent  {...rest} />
 }

@@ -5,6 +5,7 @@ export interface Config  {
     localeConfig:LocaleConfig;//语种
     attachPrefix:string;// 附件前缀
     headers:any;// 请求头
+    theme:any;// 主题
 }
 // 接口
 export interface ApiUrls {
