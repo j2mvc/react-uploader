@@ -1,7 +1,6 @@
 # react-uploader
 This is an upload component based on @material-ui react-dropzone.
 The operation results are as follows:
-![Image text](https://github.com/j2mvc/react-uploader/docs/images/1.jpg)
 ![Image text](https://raw.githubusercontent.com/j2mvc/react-uploader/master/docs/images/1.png)
 ![Image text](https://github.com/j2mvc/react-uploader/blob/master/docs/images/2.png?raw=true)
 ### Quick start 
