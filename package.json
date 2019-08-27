@@ -1,13 +1,13 @@
 {
   "name": "j2mvc-react-uploader",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "react-uploader：React上传组件，支持单文件，单图，多文件，多图上传，且可以对文件进行分组管理",
-  "main": "src",
+  "main": "build/index",
   "scripts": {
     "clean": "rimraf ./build",
     "build": "webpack --mode production",
     "watch": "webpack --watch",
-    "prepublish": "npm run clean",
+    "prepublish": "npm run clean && npm run build",
     "server": "cross-env NODE_ENV=development node server.js",
     "start": "nwb serve-react-app"
   },

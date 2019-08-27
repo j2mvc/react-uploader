@@ -1,11 +1,13 @@
 # react-uploader
 This is an upload component based on @material-ui react-dropzone.
 The operation results are as follows:
-![Image text](docs/images/1.jpg)
-![Image text](docs/images/2.jpg)
-![Image text](docs/images/3.jpg)
+![Image text](https://github.com/j2mvc/react-uploader/docs/images/1.jpg)
+![Image text](https://github.com/j2mvc/react-uploader/docs/images/2.jpg)
+![Image text](https://github.com/j2mvc/react-uploader/docs/images/3.jpg)
+![Image text](https://github.com/j2mvc/react-uploader/docs/images/4.jpg)
+![Image text](https://github.com/j2mvc/react-uploader/docs/images/5.jpg)
 ### Quick start 
-you can see example(examples/index.tsx).
+you can see example(https://github.com/j2mvc/react-uploader/examples/index.tsx).
 ```
 npm install --save j2mvc-react-uploader
 ```
@@ -19,6 +21,8 @@ add declare code to some file as *.d.ts
 ### import
 ```
 import Uploader from 'j2mvc-react-uploader'
+or
+import Uploader from 'j2mvc-react-uploader/src'
 
 ```
 ### Create whole component as Uploader.tsx or Uploader.js 
@@ -168,3 +172,52 @@ export type UploaderProps = {
 ###### clsx
 ###### axios
 ###### react-dropzone
+
+### Entities
+```
+Attach {
+    id:string;
+    url: string;
+}
+AttachGroup {
+    id:string;
+    name: string;
+}
+```
+#### Server interface rules 服务器接口规则
+##### Api error:
+```
+{
+  data:{
+    code:0,               
+    message:"wrong message"
+  }
+}
+```
+##### Upload Success:
+```
+{
+  data:{
+    code:1,
+    attaches:Attach[]
+  }
+}
+```
+##### AttachList Success:
+```
+{
+  data:{
+    code:1,
+    list:Attach[]
+  }
+}
+```
+##### AttachGroup Success:
+```
+{
+  data:{
+    code:1,
+    group:AttachGroup
+  }
+}
+```
