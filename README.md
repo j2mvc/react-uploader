@@ -201,7 +201,7 @@ AttachGroup {
   }
 }
 ```
-##### AttachList Success:
+##### Api getAttachList Success:
 ```
 {
   data:{
@@ -210,12 +210,12 @@ AttachGroup {
   }
 }
 ```
-##### AttachGroup Success:
+##### Api getAttachGroupList Success:
 ```
 {
   data:{
     code:1,
-    group:AttachGroup
+    list:AttachGroup[]
   }
 }
 ```
