@@ -8,7 +8,7 @@ import Uploader from '../src'
 
 export const Upload = (props: any) => {
 
-    return Uploader.Upload({
+    return Uploader.upload({
         headers: {
             'App-Id': appId,
             'User-Token': token
@@ -35,7 +35,7 @@ export const Upload = (props: any) => {
 
 export const UploadDialog = (props: any) => {
 
-    return Uploader.UploadDialog({
+    return Uploader.uploadDialog({
         headers: {
              'App-Id': appId,
             'User-Token': token

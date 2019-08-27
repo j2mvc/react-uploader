@@ -1,9 +1,9 @@
 
-import Upload from './Upload';
-import UploadDialog from './UploadDialog';
+import upload from './Upload';
+import uploadDialog from './UploadDialog';
 
 const Uploader =  {
-    Upload,
-    UploadDialog
+    upload,
+    uploadDialog
 }
 export default Uploader
