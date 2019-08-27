@@ -1,6 +1,8 @@
 'use strict';
 // "prepublish": "babel ./src --out-dir ./build"
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const entry = './src/index'
 const output = {
@@ -43,15 +45,15 @@ module.exports = {
 					},
 				],
 			},
-			// {
-			// 	test: /\.(sa|sc)ss$/,
-			// 	use: [
-			// 		"style-loader", // creates style nodes from JS strings
-			// 		"css-loader",
-			// 		"sass-loader", // compiles Sass to CSS, using Node Sass by default,
-			// 		'postcss-loader'
-			// 	],
-			// },
+			{
+				test: /\.(sa|sc)ss$/,
+				use: [
+					"style-loader", // creates style nodes from JS strings
+					"css-loader",
+					"sass-loader", // compiles Sass to CSS, using Node Sass by default,
+					'postcss-loader'
+				],
+			},
 		]
 	},
 	externals: {
@@ -70,5 +72,20 @@ module.exports = {
 	},
 	performance: {
 		hints: 'warning'
-	}
+	},
+	optimization: {
+		minimizer: [
+			// new CopyPlugin([
+			// 	{
+			// 		from: 'src/**/*',
+			// 		to: './',
+			// 		force: true,
+			// 	},
+			// ]),
+			new UglifyJsPlugin({
+				sourceMap: true
+			}),
+		],
+	},
+
 }
