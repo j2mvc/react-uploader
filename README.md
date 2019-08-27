@@ -1,13 +1,16 @@
 # react-uploader
+This is an upload component based on @material-ui react-dropzone.
+The operation results are as follows:
 
 ### Quick start 
+you can see example.
 ```
 npm install --save j2mvc-react-uploader
 ```
  
 ### Declare module
 if your project as typescript
-add declare code to some file as .d.ts  
+add declare code to some file as *.d.ts  
 ```
  declare module 'j2mvc-react-uploader';
 ```
