@@ -175,6 +175,7 @@ export type UploaderProps = {
 ```
 Attach {
     id:string;
+    type:string;// image|file|video|audio|flash
     url: string;
 }
 AttachGroup {
