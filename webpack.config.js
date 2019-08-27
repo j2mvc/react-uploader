@@ -1,6 +1,5 @@
 'use strict';
-
-
+// "prepublish": "babel ./src --out-dir ./build"
 const path = require('path');
 
 const entry = './src/index'
@@ -44,15 +43,15 @@ module.exports = {
 					},
 				],
 			},
-			{
-				test: /\.(sa|sc)ss$/,
-				use: [
-					"style-loader", // creates style nodes from JS strings
-					"css-loader",
-					"sass-loader", // compiles Sass to CSS, using Node Sass by default,
-					'postcss-loader'
-				],
-			},
+			// {
+			// 	test: /\.(sa|sc)ss$/,
+			// 	use: [
+			// 		"style-loader", // creates style nodes from JS strings
+			// 		"css-loader",
+			// 		"sass-loader", // compiles Sass to CSS, using Node Sass by default,
+			// 		'postcss-loader'
+			// 	],
+			// },
 		]
 	},
 	externals: {
@@ -69,10 +68,7 @@ module.exports = {
 			amd: "react-dom"
 		}
 	},
-	node: {
-		Buffer: false
-	},
 	performance: {
-		hints: "warning"
+		hints: 'warning'
 	}
 }

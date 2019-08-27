@@ -5,7 +5,6 @@ import {
 } from './base'
 
 import { defaultLocaleConfig } from '../provide/ConfigProvide'
-import * as Themes from '../config/Themes';
 
 import {Config} from '../types/app'
 
@@ -25,7 +24,6 @@ const apiUrls = {
   uploadFile: `/api/file/uploadFile`,
 }
 const defaultConfig = {
-    theme:Themes.defaultTheme,
     apiUrls,
     localeConfig:defaultLocaleConfig
 }
@@ -41,8 +39,6 @@ export const getConfig = (): Config=>{
         config.apiUrls = apiUrls
     }else if(!config.localeConfig){
         config.localeConfig = defaultLocaleConfig
-    }else if(!config.theme){
-        config.theme = Themes.defaultTheme
     }
     return config
 }

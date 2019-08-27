@@ -1,4 +1,3 @@
-
 export const words = {
     technicalSupport:"技术支持 J2mvc",
     index:"首页",

@@ -1,9 +1,11 @@
 # react-uploader
 This is an upload component based on @material-ui react-dropzone.
 The operation results are as follows:
-
+![Image text](docs/images/1.jpg)
+![Image text](docs/images/2.jpg)
+![Image text](docs/images/3.jpg)
 ### Quick start 
-you can see example.
+you can see example(examples/index.tsx).
 ```
 npm install --save j2mvc-react-uploader
 ```

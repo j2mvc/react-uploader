@@ -37,7 +37,7 @@ export const UploadDialog = (props: any) => {
 
     return Uploader.UploadDialog({
         headers: {
-            'App-Id': appId,
+             'App-Id': appId,
             'User-Token': token
         },
         attachPrefix,

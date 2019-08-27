@@ -1,4 +1,3 @@
-
 export const words = {
     technicalSupport:"Built with love by the J2mvc team.",
     index:"Index",
@@ -181,5 +180,20 @@ export const words = {
         cancel:"Cancel"
     },
     fullScreen:"Full Screen",
-    fullScreenExit:"Exit Full Screen"
+    fullScreenExit:"Exit Full Screen",
+    loadListData:"Loading List Data...",
+    removeTips:"You are deleting the file, which affects the content associated with the file!",
+    removeAsk:"This operation cannot be restored. Are you sure you want to continue？",
+    removingAttch:"Attachments are being deleted...",
+    movingAttach:"Moving attachments...",
+    saving:"Saving Group...",
+    removingItem:"Removing items...",
+    uploaded:"Upload completed",
+    uploading:"Uploading...",
+    uploadingNoEllipsis:"Uploading",
+    waitUpload:"Waiting for upload.",
+    removeGroupTips:"You are deleting the attachment group, and the current file will be moved to ungrouped!",
+    onceMastFile:"Only one file can be selected",
+    image:"Image",
+    file:"File"
 }

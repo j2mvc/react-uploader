@@ -1,6 +1,5 @@
 import { setConfig } from '../storage/ConfigStorage'
 import { words as defaultWords } from '../config/locale/zh'
-import * as Themes from '../config/Themes';
 export const localeNames = [{
   name: '简体中文',
   locale: 'zh'
@@ -39,9 +38,7 @@ export const makeConfigProvide = (): Result => {
       headers,
       apiUrls,
       locale,
-      attachPrefix,
-      themeName,
-      loaded
+      attachPrefix
     } = props
 
     // 无值，则获取本地结果
@@ -55,28 +52,13 @@ export const makeConfigProvide = (): Result => {
       locale,
       name
     }
-    // 切换主题
-    let tn = themeName || 'default'
-    let theme:any
-
-    if(tn === 'red'){
-      theme = ()=> Themes.redTheme
-    }else if(tn === 'blue'){
-      theme = ()=> Themes.blueTheme
-    }else{
-      theme = ()=> Themes.defaultTheme
-    }
     const config = {
       headers,
       apiUrls,
       localeConfig,
-      attachPrefix,
-      theme
+      attachPrefix
     }
     setConfig(config)
-    if(loaded){
-      loaded(config)
-    }
   }
   return {
     initConfig
