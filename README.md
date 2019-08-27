@@ -13,14 +13,14 @@ add declare code to some file as .d.ts
 ```
 ### import
 ```
-import { Upload as UploadComponent ,UploadDialog as UploadDialogComponent } from 'j2mvc-react-uploader'
+import Uploader from 'j2mvc-react-uploader'
 
 ```
 ### Create whole component as Uploader.tsx or Uploader.js 
 ```
 export  const Upload = (props: any) => {
 
-    return UploadComponent({
+    return Uploader.Upload({
       headers: {
         'App-Id': appId,
         'User-Token': token
@@ -47,7 +47,7 @@ export  const Upload = (props: any) => {
   
 export  const UploadDialog = (props: any) => {
 
-    return UploadDialogComponent({
+    return Uploader.UploadDialog({
       headers: {
         'App-Id': appId,
         'User-Token': token

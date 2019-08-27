@@ -5,28 +5,10 @@ import { ThemeProvider } from '@material-ui/styles';
 import * as Themes from './config/Themes';
 
 import { makeConfigProvide } from './provide/ConfigProvide'
-import * as types from './types/app'
-import * as commonTypes from './types/common'
+import * as types from './types'
+import * as appTypes from './types/app'
 
-
-// 上传组件接受参数
-export type UploaderProps = {
-  themeName?:string,// 主题名称
-  locale?: string,// 语种：en|zh默认为zh
-  headers?: any,// 请求头
-  apiUrls?: types.ApiUrls,// 上传组件所用接口地址
-  attachPrefix?: string,// 附件前缀
-  // 以下为上传组件使用参数
-  type: string,// 文件类型：image|images|file|files,video|videos|audio|audios|flash|flashes
-  onChange: Function, // 改变值，返回{attach|attaches|url}
-  cancel?: Function, // 取消动作
-  defaultUrl?: string,// 传入预设url
-  defaultUrls?: string[], // 传入预设urls
-  defaultAttach?: commonTypes.Attach,// 预设附件
-  defaultAttaches?: commonTypes.Attach[]// 预设附件列表
-}
-
-export const Upload = (props: UploaderProps) => {
+export const Upload = (props: types.UploadProps) => {
   // 初始化配置
   const {
     headers,
@@ -45,7 +27,7 @@ export const Upload = (props: UploaderProps) => {
       locale,
       attachPrefix,
       themeName,
-      loaded:(config:types.Config)=>{
+      loaded:(config:appTypes.Config)=>{
         setTheme(config.theme)
       }
     })

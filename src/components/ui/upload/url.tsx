@@ -33,8 +33,8 @@ const TypeDialog = (props: any) => {
         required
         fullWidth
         margin="dense"
-        label="链接地址"
-        placeholder="链接地址以http://或https://开头"
+        label={localeConfig.words.linkAddress.label}
+        placeholder={localeConfig.words.linkAddress.placeholder}
         onChange={(event: any) => {
           setUrl(event.target.value)
         }}

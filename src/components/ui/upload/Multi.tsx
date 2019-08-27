@@ -300,7 +300,7 @@ const Multi = (props: any) => {
         setMessage({
           open: true,
           type: 'error',
-          title: '提示',
+          title: localeConfig.words.alert.tips,//提示
           text: message
         })
       }
@@ -386,7 +386,10 @@ const Multi = (props: any) => {
             />
           </div>
           <div className={classes.progressMessage}>
-            {precent > 0 ? precent === 100 ? '上传完毕' : '正在上传...' : '等待上传.'}
+          上传完毕|正在上传...|等待上传.
+            {precent > 0 ? 
+            precent === 100 ? localeConfig.words.uploaded : localeConfig.words.uploading
+            : localeConfig.words.waitUpload}
             {precent > 0 && `${Math.ceil(precent)}%`}
           </div>
         </div>

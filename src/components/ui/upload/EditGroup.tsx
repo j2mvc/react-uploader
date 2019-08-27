@@ -40,7 +40,7 @@ export default function EditGroup(props: any) {
     // 获取列表
     setLoading({
       open: true,
-      text: '正在保存分组...'
+      text: localeConfig.words.saving//正在保存分组...
     })
     saveGroup({
       group: form,
@@ -56,7 +56,7 @@ export default function EditGroup(props: any) {
         setMessage({
           open: true,
           type: 'error',
-          title: '提示',
+          title: localeConfig.words.alert.tips,// 提示
           text: message
         })
       }
@@ -74,7 +74,7 @@ export default function EditGroup(props: any) {
           defaultValue={form && form.name}
           margin="dense"
           id="name"
-          label="分组名称"
+          label={localeConfig.words.groupName}
           type="text"
           onChange={(event: any) => {
             const newForm = form

@@ -1,4 +1,4 @@
-export const keyPrefix = 'sip-admin';
+export const keyPrefix = 'j2mvc-react-uploader';
 
 export const setObject = (key:string, value:Object)=>{
     if(value)

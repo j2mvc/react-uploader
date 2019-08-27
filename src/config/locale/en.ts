@@ -44,6 +44,10 @@ export const words = {
         label:"Title",
         placeholder:"Write title please..."
     },
+    linkAddress:{
+        label:"Link Address",
+        placeholder:"The link address starts with http:// or https://"
+    },
     sorter:"Sorter",
     status:"Status",
     on:"On",
@@ -93,6 +97,7 @@ export const words = {
     addGroup:"Add Group",
     editGroup:"Edit Group",
     removeGroup:"Remove Group",
+    groupName:"Group Name",
     ungrouped:"Ungrouped",
     localUpload:"Local upload",
     remoteFiles:"Remote files",

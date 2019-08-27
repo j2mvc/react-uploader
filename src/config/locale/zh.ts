@@ -44,6 +44,10 @@ export const words = {
         label:"标题",
         placeholder:"请输入标题"
     },
+    linkAddress:{
+        label:"链接地址",
+        placeholder:"链接地址以http://或https://开头"
+    },
     sorter:"排序",
     status:"状态",
     on:"启用",
@@ -92,6 +96,7 @@ export const words = {
     editGroupTip:"创建附件分组，以便方便查询...",
     addGroup:"添加分组",
     editGroup:"编辑分组",
+    groupName:"分组名称",
     removeGroup:"删除分组",
     ungrouped:"未分组",
     localUpload:"本地上传",
@@ -176,5 +181,20 @@ export const words = {
         cancel:"取消"
     },
     fullScreen:"全屏",
-    fullScreenExit:"退出全屏"
+    fullScreenExit:"退出全屏",
+    loadListData:"正在加载列表数据...",
+    removeTips:"您正在删除文件，这会影响文件关联的内容!",
+    removeAsk:"此操作不可恢复，确定要继续么？",
+    removingAttch:"正在删除附件...",
+    movingAttach:"正在移动附件...",
+    saving:"正在保存分组...",
+    removingItem:"正在移除条目...",
+    uploaded:"上传完毕",
+    uploading:"正在上传...",
+    uploadingNoEllipsis:"正在上传",
+    waitUpload:"等待上传.",
+    removeGroupTips:"您正在删除附件分组，当前文件将移动到未分组!",
+    onceMastFile:"只能选择一个文件",
+    image:"图片",
+    file:"文件"
 }

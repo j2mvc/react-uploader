@@ -1,28 +1,10 @@
-/**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
- */
-
 'use strict';
 
-/* eslint-env node */
 
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const devEntry = {
-	app: './examples/index.js',
-	print: './examples/print.js'
-}
-const devOutput = { 
-	library: 'ReactUpload',
-	filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '../build'),
-	libraryTarget: 'umd',
-	libraryExport: 'default'
-} 
-const proEnry = './src/index'
-const proOutput = {
+const entry = './src/index'
+const output = {
 	// The name under which the editor will be exported.
 	library: 'ReactUpload',
 	path: path.resolve(__dirname, 'build'),
@@ -30,21 +12,10 @@ const proOutput = {
 	libraryTarget: 'umd',
 	libraryExport: 'default'
 }
-const devPlugins = [
-	new HtmlWebpackPlugin({
-	  title: '管理输出',
-	  innerHTML:'<div id="example"></div>'
-	})
-  ]
-
-const isDev = process.env.NODE_ENV === 'development'
-const entry = isDev ? devEntry:proEnry
-const output = isDev ? devOutput :proOutput
-const devtool = isDev ? "inline-source-map": "source-map"
-const plugins = isDev ? devPlugins:[]
+const devtool = "source-map"
 
 module.exports = {
-	mode: isDev ? "development" : "production",
+	mode: "production",
 	devtool,
 	output,
 	entry,
@@ -103,22 +74,5 @@ module.exports = {
 	},
 	performance: {
 		hints: "warning"
-	},
-    plugins,
-	devServer: {
-		// contentBase: path.join(__dirname, "./build"),
-		// port: 9000,
-		hot: true,
-		disableHostCheck: true,
-		proxy: {
-			'/api': {
-				target: 'http://localhost:8080/sip-api',
-				ws: true,
-				changeOrigin: true,
-				pathRewrite: {
-					'^/api': ''
-				}
-			}
-		}
 	}
 }

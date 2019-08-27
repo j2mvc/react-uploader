@@ -2,7 +2,8 @@
 import Upload from './Upload';
 import UploadDialog from './UploadDialog';
 
-export default {
+const Uploader =  {
     Upload,
     UploadDialog
 }
+export default Uploader

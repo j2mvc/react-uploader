@@ -1,6 +1,6 @@
 {
   "name": "j2mvc-react-uploader",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "react-uploader：React上传组件，支持单文件，单图，多文件，多图上传，且可以对文件进行分组管理",
   "main": "build/index.js",
   "module": "build/index.js",
@@ -9,7 +9,7 @@
     "build": "webpack --mode production",
     "watch": "webpack --watch",
     "server": "cross-env NODE_ENV=development node server.js",
-    "start": "cross-env NODE_ENV=development webpack-dev-server",
+    "start": "nwb serve-react-app",
     "prepublish": "babel ./src --out-dir ./build"
   },
   "dependencies": {
@@ -42,12 +42,10 @@
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
-    "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^5.2.0",
     "css-loader": "^3.2.0",
-    "express": "^4.17.1",
-    "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.12.0",
+    "nwb": "^0.23.0",
     "postcss-loader": "^3.0.0",
     "postcss-scss": "^2.0.0",
     "precss": "^4.0.0",
@@ -64,9 +62,7 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^2.1.0",
     "webpack": "^4.39.1",
-    "webpack-cli": "^3.3.6",
-    "webpack-dev-middleware": "^3.7.0",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-cli": "^3.3.6"
   },
   "author": "j2mvc",
   "homepage": "https://github.com/j2mvc/react-uploader#readme",

@@ -126,14 +126,16 @@ const Single = (props: any) => {
         setMessage({
           open: true,
           type: 'error',
-          title: '提示',
-          text: '只能选择一个文件'
+          title: localeConfig.words.alert.tips,
+          text: localeConfig.words.onceMastFile//只能选择一个文件
         })
       } else {
         // 直接上传
         setLoading({
           open: true,
-          text: `正在上传${type === 'image' ? '图片' : '文件'}...`
+          // 正在上传图片|文件
+          text : `${localeConfig.words.uploadingNoEllipsis}${type === 'image' ? localeConfig.words.image : localeConfig.words.file}...`
+         
         })
         let data = new FormData()
         data.append('file', acceptedFiles[0])
@@ -154,7 +156,7 @@ const Single = (props: any) => {
             setMessage({
               open: true,
               type: 'error',
-              title: '提示',
+              title: localeConfig.words.alert.tips,
               text: message
             })
           }

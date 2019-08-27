@@ -158,7 +158,7 @@ const Uploader = (props: any) => {
       onRemove: (props: any) => {
         setLoading({
           open: true,
-          text: '正在移除条目...'
+          text: localeConfig.words.removingItem//正在移除条目...
         })
         const { index } = props
         remove(index, () => {

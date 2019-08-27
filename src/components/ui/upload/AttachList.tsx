@@ -168,9 +168,9 @@ const AttachListPage = (props: any) => {
   const initialLoading = { open: false, text: '' }
   const [loading, setLoading] = useState({
     open: true, 
-    text: '正在加载列表数据...'
+    text: localeConfig.words.loadListData
   })
-
+ 
   // 初始化编辑页面传来的attaches为selected
   const initialSelected = () => {
     if (attaches && attaches.length > 0) {
@@ -222,7 +222,7 @@ const AttachListPage = (props: any) => {
     // 获取列表
     setLoading({
       open: true,
-      text: '正在加载列表数据...'
+      text: localeConfig.words.loadListData
     })
     getAttachList({
       params,
@@ -239,7 +239,7 @@ const AttachListPage = (props: any) => {
         setMessage({
           open: false,
           type: 'error',
-          title: '提示',
+          title: localeConfig.words.alert.tips,
           text: message
         })
       }
@@ -257,8 +257,10 @@ const AttachListPage = (props: any) => {
     const description = (<Box className={classes.alert}>
       <Box className={classes.alertIcon}><Icon name="Alert" width={32} height={32} /></Box>
       <Box>
-        <Box>您正在删除文件，这会影响文件关联的内容!</Box>
-        <Box>此操作不可恢复，确定要继续么？</Box>
+      {/* 您正在删除文件，这会影响文件关联的内容!
+      此操作不可恢复，确定要继续么？ */}
+        <Box>{localeConfig.words.removeTips}</Box>
+        <Box>{localeConfig.words.ask}</Box>
       </Box>
     </Box>)
     setAlertOpen(true)
@@ -269,7 +271,7 @@ const AttachListPage = (props: any) => {
         setAlertOpen(false)
         setDialogLoading({
           open: true,
-          text: '正在删除附件...'
+          text: localeConfig.words.removingAttch//'正在删除附件...'
         })
         removeAttach({
           id,
@@ -286,7 +288,7 @@ const AttachListPage = (props: any) => {
             setMessage({
               open: true,
               type: 'error',
-              title: '提示',
+              title: localeConfig.words.alert.tips,//'提示',
               text: message
             })
           }
@@ -306,7 +308,7 @@ const AttachListPage = (props: any) => {
   const moveSelected = (newGroupId: string) => {
     setDialogLoading({
       open: true,
-      text: '正在移动附件...'
+      text: localeConfig.words.alert.movingAttach,//'正在移动附件...'
     })
     const id = Object.keys(selected);
     moveAttach({
@@ -325,7 +327,7 @@ const AttachListPage = (props: any) => {
         setMessage({
           open: true,
           type: 'error',
-          title: '提示',
+          title: localeConfig.words.alert.tips,//'提示',
           text: message
         })
       }

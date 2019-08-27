@@ -135,6 +135,7 @@ const Remote = (props: any) => {
         setGroupList(list)
       },
       failure: (message: string) => {
+        setLoading(initialLoading)
       }
     })
   }
@@ -160,8 +161,8 @@ const Remote = (props: any) => {
     const description = (<Box className={classes.alert}>
       <Box className={classes.alertIcon}><Icon name="Alert" width={32} height={32} /></Box>
       <Box>
-        <Box>您正在删除附件分组，当前文件将移动到未分组!</Box>
-        <Box>此操作不可恢复，确定要继续么？</Box>
+        <Box>{localeConfig.words.removeGroupTips}</Box>
+        <Box>{localeConfig.words.removeAsk}</Box>
       </Box>
     </Box>)
     setAlertOpen(true)
